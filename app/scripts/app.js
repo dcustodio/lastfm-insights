@@ -5,7 +5,8 @@ var app = angular.module('lastfmInsightsApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'userService'
+  'restangular',
+  'lastfmInsightsApp.services'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -17,3 +18,7 @@ var app = angular.module('lastfmInsightsApp', [
         redirectTo: '/'
       });
   });
+app.config(function(RestangularProvider) {
+    RestangularProvider.setBaseUrl('http://ws.audioscrobbler.com/2.0/');
+    RestangularProvider.setRequestSuffix('.json');
+});
